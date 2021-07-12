@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
+import Fade from 'react-reveal/Fade';
 
 const Section = ({title, description, backgroundImg, leftBtnText, rightBtnText}) => {
     return (
@@ -17,7 +18,6 @@ const Section = ({title, description, backgroundImg, leftBtnText, rightBtnText})
                     <RightButton>
                         {rightBtnText}
                     </RightButton>}
-
                 </ButtonGroup>
                 <DownArrow src="/images/down-arrow.svg"/>
             </Button>
@@ -39,6 +39,7 @@ const Wrap = styled.div`
   justify-content: space-between; //for vertical alignment
   align-items: center;
   background-image: ${props => `url("/images/${props.bgImage}")`}
+
 
 `
 
