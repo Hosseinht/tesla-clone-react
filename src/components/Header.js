@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components";
-
+import CloseIcon from '@material-ui/icons/Close';
 
 const Header = () => {
+    const [menuStatus, setMenuStatus] = useState(false)
     return (
         <Container>
             <a>
@@ -13,14 +14,35 @@ const Header = () => {
                 <a href="#">Model 3</a>
                 <a href="#">Model X</a>
                 <a href="#">Model Y</a>
+                <a href="#">Solar Roof</a>
+                <a href="#">Solar Panels</a>
             </Menu>
             <RightMenu>
                 <a href="#">Shop</a>
                 <a href="#">Account</a>
             </RightMenu>
-            <CustomMenu>
+            <CustomMenu onClick={() => setMenuStatus(true)}>
                 <a href="#">Menu</a>
             </CustomMenu>
+            <CustomMenuItems show={menuStatus}>
+                <CloseWrapper>
+                    <CustomClose onClick={() => setMenuStatus(false)}/>
+                </CloseWrapper>
+
+                <li><a href="#">Existing Inventory</a></li>
+                <li><a href="#">Used Inventory</a></li>
+                <li><a href="#">Trade-In</a></li>
+                <li><a href="#">Test Drive</a></li>
+                <li><a href="#">Cybertruck</a></li>
+                <li><a href="#">Roadster</a></li>
+                <li><a href="#">Semi</a></li>
+                <li><a href="#">Charging</a></li>
+                <li><a href="#">Powerwall</a></li>
+                <li><a href="#">Commercial Energy</a></li>
+                <li><a href="#">Utilities</a></li>
+                <li><a href="#">Find Us</a></li>
+                <li><a href="#">Support</a></li>
+            </CustomMenuItems>
         </Container>
     );
 };
@@ -34,6 +56,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
+  z-index: 1;
   top: 0;
   left: 0;
   right: 0; //these three are for width 100%
@@ -71,4 +94,36 @@ const CustomMenu = styled.div`
     font-weight: 600;
     margin-right:10px;
   }
+`
+
+const CustomMenuItems = styled.div`
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: white;
+  width: 300px;
+  z-index: 10;
+  list-style: none;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  transform: ${props => props.show ? 'translateX(0)' : 'translateX(100%)'};
+  transition: transform 0.2s ease-in-out;
+  li {
+      padding: 15px 0;
+      a {
+        font-weight: 600;
+      }
+  }
+`
+
+const CustomClose = styled(CloseIcon)`
+  cursor: pointer;
+`
+
+const CloseWrapper = styled.div`
+    display: flex;
+    justify-content: flex-end;
 `
